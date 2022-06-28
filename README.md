@@ -6,7 +6,7 @@ This application is built using TypeScript and Express for a quick and concise e
 
 ### Upcoming Features
 
-- [ ] User authentication
+- [x] User authentication
 - [ ] Exercise CRUD
 - [ ] Workout CRUD
 - [ ] Progress Tracking CRUD
