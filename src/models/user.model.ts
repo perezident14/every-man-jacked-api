@@ -12,7 +12,7 @@ export interface UserDocument extends Document {
   lastName: string
   email: string
   password: string
-  role: string
+  role: UserRole
   workouts: Schema.Types.ObjectId[]
   createdAt: Date;
   updatedAt: Date;
@@ -39,10 +39,13 @@ const userSchema = new Schema({
   },
   role: {
     type: String,
+    enum: UserRole,
+    default: UserRole.USER,
     required: true,
   },
   workouts: {
     type: [Schema.Types.ObjectId],
+    default: [],
     required: true,
   },
 }, { timestamps: true });
