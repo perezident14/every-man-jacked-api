@@ -15,7 +15,7 @@ This application is built using TypeScript and Express for a quick and concise e
 
 ### Upcoming Entities
 
-- [ ] Users
+- [x] Users
   - [ ] Admin
   - [ ] Coach
 - [ ] Exercises
