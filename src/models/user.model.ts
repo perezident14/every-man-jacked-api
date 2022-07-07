@@ -1,22 +1,17 @@
-import 'dotenv/config';
-import bcrypt from 'bcrypt';
-import { CallbackWithoutResultAndOptionalError, Document, model, Schema, Types } from 'mongoose';
+import { model, Schema } from 'mongoose';
 
 export enum UserRole {
   ADMIN = 'ADMIN',
   USER = 'USER',
 }
 
-export interface UserDocument extends Document {
+export interface User {
   firstName: string
   lastName: string
   email: string
   password: string
   role: UserRole
   workouts: Schema.Types.ObjectId[]
-  createdAt: Date;
-  updatedAt: Date;
-  comparePassword(candidatePassword: string): Promise<boolean>
 }
 
 const userSchema = new Schema({
@@ -49,27 +44,6 @@ const userSchema = new Schema({
     required: true,
   },
 }, { timestamps: true });
-
-userSchema.pre('save', async function (next: CallbackWithoutResultAndOptionalError) {
-  let user = this as UserDocument;
-
-  if (!user.isModified('password')) {
-    return next();
-  }
-
-  const salt = await bcrypt.genSalt(parseInt(process.env.SALT_ROUNDS));
-  const hash = await bcrypt.hash(user.password, salt);
-
-  user.password = hash;
-
-  return next();
-});
-
-userSchema.methods.comparePassword = async function (candidatePassword: string): Promise<boolean> {
-  const user = this as UserDocument;
-
-  return bcrypt.compare(candidatePassword, user.password).catch(() => false);
-};
 
 const UserModel = model('User', userSchema);
 export default UserModel;
