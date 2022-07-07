@@ -7,7 +7,19 @@ export async function createUser(newUser: User) {
   try {
     const hash = await hashPassword(newUser.password);
     const user = await UserModel.create({ ...newUser, password: hash });
-    return omit(user, 'password');
+    return omit(user.toJSON(), 'password');
+  } catch (error: any) {
+    throw new Error(error);
+  }
+};
+
+export async function readUser(id: string) {
+  try {
+    const user = await UserModel.findById(id);
+    if (!user) {
+      throw new Error('User Not Found');
+    }
+    return omit(user.toJSON(), 'password');
   } catch (error: any) {
     throw new Error(error);
   }
