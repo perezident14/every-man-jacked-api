@@ -1,12 +1,15 @@
-import express, { Express, Request, Response } from 'express';
+import express, { Express } from 'express';
 import userController from './controllers/user.controller';
+import workoutController from './controllers/workout.controller';
 
 function routes(app: Express) {
-  app.get('/health-check', (req: Request, res: Response) => res.send(200));
-
   const users = express();
   app.use('/api/users', users);
   userController(users);
+
+  const workouts = express();
+  app.use('/api/workouts', workouts);
+  workoutController(workouts);
 };
 
 export default routes;

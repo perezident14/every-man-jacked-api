@@ -48,7 +48,7 @@ export async function updateUser(id: string, updatedUser: User) {
 
 export async function deleteUser(id: string) {
   try {
-    const user = await UserModel.findByIdAndDelete(id, { new: true });
+    const user = await UserModel.findByIdAndDelete(id, { new: true }); // TODO: Need different return data
     if (!user) {
       throw new Error('User Not Found');
     }

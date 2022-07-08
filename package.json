@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/p14/every-man-jacked-api#readme",
   "dependencies": {
+    "@types/express-session": "^1.17.5",
     "bcrypt": "^5.0.1",
     "config": "^3.3.7",
     "cors": "^2.8.5",
