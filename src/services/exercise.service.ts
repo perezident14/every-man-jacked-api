@@ -1,4 +1,3 @@
-import 'dotenv/config';
 import ExerciseModel, { Exercise } from '../models/exercise.model';
 
 export async function listExercises() {

@@ -1,5 +1,4 @@
 import { Document, model, Schema, Types } from 'mongoose';
-import { User } from './user.model';
 
 export interface SessionDocument extends Document {
   user: Types.ObjectId;
