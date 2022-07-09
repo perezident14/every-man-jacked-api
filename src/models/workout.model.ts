@@ -16,7 +16,7 @@ export enum WorkoutCategory {
 
 export interface Workout {
   title: string
-  category: string
+  category: WorkoutCategory
   exercises: Schema.Types.ObjectId[]
 }
 

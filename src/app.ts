@@ -5,13 +5,15 @@ import connect from './utils/connect';
 import logger from './utils/logger';
 
 const app = express();
-
 app.use(express.json());
+
+const api = express();
+app.use('/api', api);
 
 app.listen(process.env.PORT, async () => {
   logger.info(`App is running at http://localhost:${process.env.PORT}`);
 
   await connect();
 
-  routes(app);
+  routes(api);
 });

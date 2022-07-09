@@ -1,11 +1,11 @@
 import { Express, Request, Response } from 'express';
-import { listWorkouts, createWorkout, readWorkout, updateWorkout, deleteWorkout } from '../services/workout.service';
+import { listExercises, createExercise, readExercise, updateExercise, deleteExercise } from '../services/exercise.service';
 import logger from '../utils/logger';
 
-function workoutController(app: Express) {
+function exerciseController(app: Express) {
   app.get('/', async (req: Request, res: Response) => {
     try {
-      const data = await listWorkouts();
+      const data = await listExercises();
       return res.send(data);
     } catch (error: any) {
       logger.error(error);
@@ -15,7 +15,7 @@ function workoutController(app: Express) {
 
   app.post('/', async (req: Request, res: Response) => {
     try {
-      const data = await createWorkout(req.body);
+      const data = await createExercise(req.body);
       return res.send(data);
     } catch (error: any) {
       logger.error(error);
@@ -25,7 +25,7 @@ function workoutController(app: Express) {
 
   app.get('/:id', async (req: Request, res: Response) => {
     try {
-      const data = await readWorkout(req.params.id);
+      const data = await readExercise(req.params.id);
       return res.send(data);
     } catch (error: any) {
       logger.error(error);
@@ -35,7 +35,7 @@ function workoutController(app: Express) {
 
   app.put('/:id', async (req: Request, res: Response) => {
     try {
-      const data = await updateWorkout(req.params.id, req.body);
+      const data = await updateExercise(req.params.id, req.body);
       return res.send(data);
     } catch (error: any) {
       logger.error(error);
@@ -45,7 +45,7 @@ function workoutController(app: Express) {
 
   app.delete('/:id', async (req: Request, res: Response) => {
     try {
-      const data = await deleteWorkout(req.params.id);
+      const data = await deleteExercise(req.params.id);
       return res.send(data);
     } catch (error: any) {
       logger.error(error);
@@ -54,4 +54,4 @@ function workoutController(app: Express) {
   });
 };
 
-export default workoutController;
+export default exerciseController;
