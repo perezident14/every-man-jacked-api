@@ -10,7 +10,7 @@ This application is built using TypeScript and Express for a quick and concise e
 - [x] Exercise CRUD
 - [x] Workout CRUD
 - [ ] Progress Tracking CRUD
-- [ ] User Sessions
+- [x] User Sessions
 - [ ] Admin role / support
 - [ ] Coaching role / support
 
