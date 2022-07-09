@@ -21,7 +21,9 @@ const sessionSchema = new Schema({
   userAgent: {
     type: String,
   },
-}, { timestamps: true });
+}, {
+  timestamps: true,
+});
 
 const SessionModel = model('Session', sessionSchema);
 export default SessionModel;

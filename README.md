@@ -7,9 +7,10 @@ This application is built using TypeScript and Express for a quick and concise e
 ### Upcoming Features
 
 - [x] User authentication
-- [ ] Exercise CRUD
-- [ ] Workout CRUD
+- [x] Exercise CRUD
+- [x] Workout CRUD
 - [ ] Progress Tracking CRUD
+- [ ] User Sessions
 - [ ] Admin role / support
 - [ ] Coaching role / support
 
@@ -18,8 +19,8 @@ This application is built using TypeScript and Express for a quick and concise e
 - [x] Users
   - [ ] Admin
   - [ ] Coach
-- [ ] Exercises
-- [ ] Workouts
+- [x] Exercises
+- [x] Workouts
 - [ ] Progress Tracker
 
 ## Available Scripts

@@ -14,11 +14,45 @@ export enum WorkoutCategory {
   HIIT = 'HIIT',
 }
 
+export interface Set {
+  reps: number
+}
+
+export interface ExerciseItem {
+  id: Schema.Types.ObjectId
+  sets: Set[]
+}
+
 export interface Workout {
   title: string
   category: WorkoutCategory
-  exercises: Schema.Types.ObjectId[]
+  exercises: ExerciseItem[]
 }
+
+const setSchema = new Schema({
+  reps: {
+    type: Number,
+    required: true,
+  },
+}, {
+  _id: false,
+  timestamps: false,
+});
+
+const exerciseItemSchema = new Schema({
+  id: {
+    type: Schema.Types.ObjectId,
+    required: true,
+  },
+  sets: {
+    type: [setSchema],
+    default: [],
+    required: true,
+  },
+}, {
+  _id: false,
+  timestamps: false,
+});
 
 const workoutSchema = new Schema({
   title: {
@@ -31,11 +65,13 @@ const workoutSchema = new Schema({
     required: true,
   },
   exercises: {
-    type: [Schema.Types.ObjectId],
+    type: [exerciseItemSchema],
     default: [],
     required: true,
   },
-}, { timestamps: true });
+}, {
+  timestamps: true,
+});
 
 const WorkoutModel = model('Workout', workoutSchema);
 export default WorkoutModel;
