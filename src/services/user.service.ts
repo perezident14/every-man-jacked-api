@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import UserModel, { User } from '../models/user.model';
 
 export async function listUsers() {
@@ -65,9 +66,34 @@ export async function hashPassword(password: string) {
 };
 
 export async function comparePassword(id: string, password: string) {
-  const user = await UserModel.findById(id);
+  const user = await UserModel.findById(id, 'password');
   if (!user) {
     throw new Error('User Not Found');
   }
-  return bcrypt.compare(password, user.password);
+  return bcrypt.compare(password, user.password)
+};
+
+export async function loginUser(email: string, password: string) {
+  const [user] = await UserModel.find({ email });
+  if (!user) {
+    throw new Error('User Not Found');
+  }
+
+  const validPassword = await bcrypt.compare(password, user.password)
+  if (!validPassword) {
+    throw new Error('Invalid Password');
+  }
+
+  const payload = user.toJSON();
+  const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 3600 });
+  const refresh = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 86400 });
+  const idToken = jwt.sign(payload, process.env.JWT_SECRET);
+
+  const AuthenticationResult = {
+    AccessToken: token,
+    RefreshToken: refresh,
+    IdToken: idToken,
+  }
+
+  return { AuthenticationResult };
 };
