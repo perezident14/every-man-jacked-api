@@ -1,9 +1,24 @@
 import { Express, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
+import { UserRole } from '../models/user.model';
 import { createUser, loginUser, readUser } from '../services/user.service';
 import logger from '../utils/logger';
 
 function authLoader(app: Express) {
+  app.post('/admin/login', async (req: Request, res: Response) => {
+    try {
+      const { email, password } = req.body;
+      const authenticate = await loginUser(email, password);
+      if (authenticate.user.role !== UserRole.ADMIN) {
+        throw new Error('User Not Permitted');
+      }
+      return res.send(authenticate);
+    } catch (error: any) {
+      logger.error(error);
+      return res.status(409).send(error.message);
+    }
+  });
+
   app.post('/login', async (req: Request, res: Response) => {
     try {
       const { email, password } = req.body;

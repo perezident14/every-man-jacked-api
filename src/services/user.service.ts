@@ -36,8 +36,11 @@ export async function readUser(id: string) {
 
 export async function updateUser(id: string, updatedUser: User) {
   try {
-    const hash = await hashPassword(updatedUser.password);
-    const user = await UserModel.findByIdAndUpdate(id, { ...updatedUser, password: hash }, { new: true });
+    if (updatedUser.password) {
+      const hash = await hashPassword(updatedUser.password);
+      updatedUser.password = hash;
+    }
+    const user = await UserModel.findByIdAndUpdate(id, { ...updatedUser }, { new: true });
     if (!user) {
       throw new Error('User Not Found');
     }
