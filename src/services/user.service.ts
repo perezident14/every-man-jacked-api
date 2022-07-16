@@ -87,13 +87,11 @@ export async function loginUser(email: string, password: string) {
   const payload = user.toJSON();
   const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 3600 });
   const refresh = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 86400 });
-  const idToken = jwt.sign(payload, process.env.JWT_SECRET);
 
   const AuthenticationResult = {
     AccessToken: token,
     RefreshToken: refresh,
-    IdToken: idToken,
-  }
+  };
 
-  return { AuthenticationResult };
+  return { AuthenticationResult, user: payload };
 };

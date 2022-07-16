@@ -10,14 +10,13 @@ export async function authenticateToken(req: Request, res: Response, next: NextF
   }
 
   jwt.verify(token, process.env.JWT_SECRET, (error: any, user: any) => {
-    console.log(error)
-
     if (error) {
+      console.log(error);
       return res.sendStatus(403);
     }
 
     (req as any).user = user;
 
     next();
-  })
+  });
 };
