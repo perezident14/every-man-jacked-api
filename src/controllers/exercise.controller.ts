@@ -1,5 +1,6 @@
 import { Express, Request, Response } from 'express';
 import { listExercises, createExercise, readExercise, updateExercise, deleteExercise } from '../services/exercise.service';
+import { errorParser } from '../utils/error.parser';
 import logger from '../utils/logger';
 
 function exerciseController(app: Express) {
@@ -9,7 +10,8 @@ function exerciseController(app: Express) {
       return res.send(data);
     } catch (error: any) {
       logger.error(error);
-      return res.status(409).send(error.message);
+      const parsed = errorParser(error);
+      return res.status(parsed.status).send(parsed.message);
     }
   });
 
@@ -19,7 +21,8 @@ function exerciseController(app: Express) {
       return res.send(data);
     } catch (error: any) {
       logger.error(error);
-      return res.status(409).send(error.message);
+      const parsed = errorParser(error);
+      return res.status(parsed.status).send(parsed.message);
     }
   });
 
@@ -29,7 +32,8 @@ function exerciseController(app: Express) {
       return res.send(data);
     } catch (error: any) {
       logger.error(error);
-      return res.status(409).send(error.message);
+      const parsed = errorParser(error);
+      return res.status(parsed.status).send(parsed.message);
     }
   });
 
@@ -39,7 +43,8 @@ function exerciseController(app: Express) {
       return res.send(data);
     } catch (error: any) {
       logger.error(error);
-      return res.status(409).send(error.message);
+      const parsed = errorParser(error);
+      return res.status(parsed.status).send(parsed.message);
     }
   });
 
@@ -49,7 +54,8 @@ function exerciseController(app: Express) {
       return res.send(data);
     } catch (error: any) {
       logger.error(error);
-      return res.status(409).send(error.message);
+      const parsed = errorParser(error);
+      return res.status(parsed.status).send(parsed.message);
     }
   });
 };
