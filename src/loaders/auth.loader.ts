@@ -62,8 +62,10 @@ function authLoader(app: Express) {
 
   app.post('/register', async (req: Request, res: Response) => {
     try {
-      const user = await createUser(req.body);
-      return res.send(user);
+      const user = req.body;
+      await createUser(user);
+      const authenticate = await loginUser(user.email, user.password);
+      return res.send(authenticate);
     } catch (error: any) {
       logger.error(error);
       return res.status(409).send(error.message);

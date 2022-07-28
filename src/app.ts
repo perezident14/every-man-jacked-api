@@ -7,7 +7,7 @@ import logger from './utils/logger';
 
 const corsOptions = {
   credentials: true,
-  origin: ['http://localhost:3000', 'https://everymanjacked.com'],
+  origin: ['http://localhost:3000', 'http://localhost:3001', 'https://everymanjacked.com'],
 };
 
 const app = express();
