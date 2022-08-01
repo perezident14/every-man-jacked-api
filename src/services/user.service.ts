@@ -62,6 +62,7 @@ export async function deleteUser(id: string) {
   }
 };
 
+// Move these to auth service?
 export async function hashPassword(password: string) {
   const salt = await bcrypt.genSalt(parseInt(process.env.SALT_ROUNDS));
   const hash = await bcrypt.hash(password, salt);
