@@ -1,9 +1,9 @@
 import { Express, Request, Response } from 'express';
-import { listExercises, createExercise, readExercise, updateExercise, deleteExercise } from '../services/exercise.service';
+import { createExercise, deleteExercise, listExercises, readExercise, updateExercise } from '../services/exercise.service';
 import { errorParser } from '../utils/error.parser';
 import logger from '../utils/logger';
 
-function exerciseController(app: Express) {
+function ExerciseController(app: Express) {
   app.get('/', async (req: Request, res: Response) => {
     try {
       const data = await listExercises();
@@ -60,4 +60,4 @@ function exerciseController(app: Express) {
   });
 };
 
-export default exerciseController;
+export default ExerciseController;

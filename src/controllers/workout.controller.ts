@@ -1,9 +1,9 @@
 import { Express, Request, Response } from 'express';
-import { listWorkouts, createWorkout, readWorkout, updateWorkout, deleteWorkout } from '../services/workout.service';
+import { createWorkout, deleteWorkout, listWorkouts, readWorkout, updateWorkout } from '../services/workout.service';
 import { errorParser } from '../utils/error.parser';
 import logger from '../utils/logger';
 
-function workoutController(app: Express) {
+function WorkoutController(app: Express) {
   app.get('/', async (req: Request, res: Response) => {
     try {
       const data = await listWorkouts();
@@ -60,4 +60,4 @@ function workoutController(app: Express) {
   });
 };
 
-export default workoutController;
+export default WorkoutController;

@@ -1,9 +1,9 @@
-import exerciseController from './exercise.controller';
-import userController from './user.controller';
-import workoutController from './workout.controller';
+import ExerciseController from './exercise.controller';
+import UserController from './user.controller';
+import WorkoutController from './workout.controller';
 
 export {
-  exerciseController,
-  userController,
-  workoutController,
+  ExerciseController,
+  UserController,
+  WorkoutController,
 };

@@ -52,17 +52,16 @@ export async function updateUser(id: string, updatedUser: User) {
 
 export async function deleteUser(id: string) {
   try {
-    const user = await UserModel.findByIdAndDelete(id, { new: true }); // TODO: Need different return data
-    if (!user) {
+    const data = await UserModel.deleteOne({ _id: id });
+    if (!data.acknowledged) {
       throw new Error('User Not Found');
     }
-    return user;
+    return data;
   } catch (error: any) {
     throw new Error(error);
   }
 };
 
-// Move these to auth service?
 export async function hashPassword(password: string) {
   const salt = await bcrypt.genSalt(parseInt(process.env.SALT_ROUNDS));
   const hash = await bcrypt.hash(password, salt);

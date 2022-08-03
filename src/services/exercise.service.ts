@@ -44,11 +44,11 @@ export async function updateExercise(id: string, updatedExercise: Exercise) {
 
 export async function deleteExercise(id: string) {
   try {
-    const exercise = await ExerciseModel.findByIdAndDelete(id, { new: true }); // TODO: Need different return data
-    if (!exercise) {
+    const data = await ExerciseModel.deleteOne({ _id: id });
+    if (!data.acknowledged) {
       throw new Error('Exercise Not Found');
     }
-    return exercise;
+    return data;
   } catch (error: any) {
     throw new Error(error);
   }

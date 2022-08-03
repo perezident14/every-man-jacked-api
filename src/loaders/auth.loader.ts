@@ -2,6 +2,7 @@ import { Express, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { UserRole } from '../models/user.model';
 import { createUser, loginUser, readUser } from '../services/user.service';
+import { errorParser } from '../utils/error.parser';
 import logger from '../utils/logger';
 
 function authLoader(app: Express) {
@@ -15,7 +16,8 @@ function authLoader(app: Express) {
       return res.send(authenticate);
     } catch (error: any) {
       logger.error(error);
-      return res.status(409).send(error.message);
+      const parsed = errorParser(error);
+      return res.status(parsed.status).send(parsed.message);
     }
   });
 
@@ -26,7 +28,8 @@ function authLoader(app: Express) {
       return res.send(authenticate);
     } catch (error: any) {
       logger.error(error);
-      return res.status(409).send(error.message);
+      const parsed = errorParser(error);
+      return res.status(parsed.status).send(parsed.message);
     }
   });
 
@@ -43,7 +46,6 @@ function authLoader(app: Express) {
 
     jwt.verify(data.refreshToken, process.env.JWT_SECRET, async (error: any, user: any) => {
       if (error) {
-        console.log(error);
         return res.status(403).send('Expired Refresh Token');
       }
 
@@ -68,7 +70,8 @@ function authLoader(app: Express) {
       return res.send(authenticate);
     } catch (error: any) {
       logger.error(error);
-      return res.status(409).send(error.message);
+      const parsed = errorParser(error);
+      return res.status(parsed.status).send(parsed.message);
     }
   });
 };

@@ -1,9 +1,9 @@
 import { Express, Request, Response } from 'express';
-import { listUsers, createUser, readUser, updateUser, deleteUser } from '../services/user.service';
+import { createUser, deleteUser, listUsers, readUser, updateUser } from '../services/user.service';
 import { errorParser } from '../utils/error.parser';
 import logger from '../utils/logger';
 
-function userController(app: Express) {
+function UserController(app: Express) {
   app.get('/', async (req: Request, res: Response) => {
     try {
       const data = await listUsers();
@@ -60,4 +60,4 @@ function userController(app: Express) {
   });
 };
 
-export default userController;
+export default UserController;

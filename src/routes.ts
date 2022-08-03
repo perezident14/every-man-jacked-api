@@ -13,15 +13,15 @@ function routes(app: Express) {
 
   const exercises = express();
   app.use('/exercises', exercises);
-  AppControllers.exerciseController(exercises);
+  AppControllers.ExerciseController(exercises);
 
   const users = express();
   app.use('/users', users);
-  AppControllers.userController(users);
+  AppControllers.UserController(users);
 
   const workouts = express();
   app.use('/workouts', workouts);
-  AppControllers.workoutController(workouts);
+  AppControllers.WorkoutController(workouts);
 };
 
 export default routes;
