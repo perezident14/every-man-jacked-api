@@ -4,25 +4,6 @@ Every Man Jacked is a workout tool that helps users structure their own workouts
 
 This application is built using TypeScript and Express for a quick and concise experience.
 
-### Upcoming Features
-
-- [x] User authentication
-- [x] Exercise CRUD
-- [x] Workout CRUD
-- [ ] Progress Tracking CRUD
-- [x] User Sessions
-- [ ] Admin role / support
-- [ ] Coaching role / support
-
-### Upcoming Entities
-
-- [x] Users
-  - [ ] Admin
-  - [ ] Coach
-- [x] Exercises
-- [x] Workouts
-- [ ] Progress Tracker
-
 ## Available Scripts
 
 In the project directory, you can run:
@@ -30,4 +11,4 @@ In the project directory, you can run:
 ### `npm run dev`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:4000](http://localhost:4000) to view it in the browser.
