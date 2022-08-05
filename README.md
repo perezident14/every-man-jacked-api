@@ -1,14 +1,24 @@
 # Every Man Jacked (API)
 
-Every Man Jacked is a workout tool that helps users structure their own workouts with specific goals for strength and weight loss in mind. It allows a user to select an exercise category / muscle group to filter exercises before constructing their own workout. It also has a feature to generate a randomized workout based on criteria they specify.
+Every Man Jacked is a workout tool that helps users structure their own workouts with specific goals for strength in mind. This API handles the data flow for CRUD functionality surrounding exercises, workouts, users, and authentication.
 
-This application is built using TypeScript and Express for a quick and concise experience.
+This application is built using Node, Express, and TypeScript for a quick and concise experience. This app was built with the purpose of improving technical skills and educating others with a simple and clean workflow. 
 
-## Available Scripts
+## Getting Started
 
-In the project directory, you can run:
+### Installing
 
-### `npm run dev`
+* Run `npm install`
+* Create a MongoDB Cluster
+* Create a `.env` file in the root directory with the following variables (substitute appropriate values):
 
-Runs the app in the development mode.\
-Open [http://localhost:4000](http://localhost:4000) to view it in the browser.
+```
+PORT=4000
+DB_URI={YOUR_DB_URL}
+JWT_SECRET={YOUR_RANDOM_SECRET}
+SALT_ROUNDS=12
+```
+
+### Executing Program
+* Run `npm run dev`
+* Open [http://localhost:4000](http://localhost:4000) to view it in the browser
