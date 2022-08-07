@@ -20,5 +20,5 @@ SALT_ROUNDS=12
 ```
 
 ### Executing Program
-* Run `npm run dev`
+* Run `npm run start`
 * Open [http://localhost:4000](http://localhost:4000) to view it in the browser
