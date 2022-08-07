@@ -12,7 +12,7 @@ function authLoader(app: Express) {
   app.post('/admin/login', async (req: Request, res: Response) => {
     try {
       const { email, password } = req.body;
-      const authenticate = await loginUser(email, password);
+      const authenticate = await loginUser(email.toLowerCase(), password);
       if (authenticate.user.role !== UserRole.ADMIN) {
         throw new Error('User Not Permitted');
       }
@@ -27,7 +27,7 @@ function authLoader(app: Express) {
   app.post('/login', async (req: Request, res: Response) => {
     try {
       const { email, password } = req.body;
-      const authenticate = await loginUser(email, password);
+      const authenticate = await loginUser(email.toLowerCase(), password);
       return res.send(authenticate);
     } catch (error: any) {
       logger.error(error);
@@ -67,7 +67,10 @@ function authLoader(app: Express) {
 
   app.post('/register', async (req: Request, res: Response) => {
     try {
-      const user = req.body;
+      const user = {
+        ...req.body,
+        email: req.body.email.toLowerCase(),
+      };
       await createUser(user);
       const authenticate = await loginUser(user.email, user.password);
       return res.send(authenticate);
