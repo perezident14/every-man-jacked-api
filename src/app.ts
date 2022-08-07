@@ -1,6 +1,6 @@
+import 'dotenv/config'
 import cors from 'cors';
 import express from 'express';
-import * as config from './config';
 import routes from './routes';
 import connect from './utils/connect';
 import logger from './utils/logger';
@@ -17,8 +17,8 @@ app.use(cors(corsOptions));
 const api = express();
 app.use('/api', api);
 
-app.listen(config.PORT, async () => {
-  logger.info(`App is running at http://localhost:${config.PORT}`);
+app.listen(process.env.PORT, async () => {
+  logger.info(`App is running at http://localhost:${process.env.PORT}`);
 
   await connect();
 
