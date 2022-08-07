@@ -17,6 +17,10 @@ app.use(cors(corsOptions));
 const api = express();
 app.use('/api', api);
 
+app.get('/status-check', (req, res) => {
+  res.status(200).send('Hello World! I am up and running!');
+})
+
 app.listen(process.env.PORT, async () => {
   logger.info(`App is running at http://localhost:${process.env.PORT}`);
 
