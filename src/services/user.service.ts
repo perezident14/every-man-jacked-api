@@ -1,6 +1,4 @@
-// import bcrypt from 'bcrypt';
-// import jwt from 'jsonwebtoken';
-import * as config from '../config';
+import Config from '../config';
 import UserModel, { User } from '../models/user.model';
 
 const bcrypt = require('bcrypt');
@@ -66,7 +64,7 @@ export async function deleteUser(id: string) {
 };
 
 export async function hashPassword(password: string) {
-  const salt = await bcrypt.genSalt(parseInt(config.SALT_ROUNDS));
+  const salt = await bcrypt.genSalt(parseInt(Config.SALT_ROUNDS));
   const hash = await bcrypt.hash(password, salt);
   return hash;
 };
@@ -91,8 +89,8 @@ export async function loginUser(email: string, password: string) {
   }
 
   const payload = user.toJSON();
-  const token = jwt.sign(payload, config.JWT_SECRET, { expiresIn: 3600 });
-  const refresh = jwt.sign(payload, config.JWT_SECRET, { expiresIn: 86400 });
+  const token = jwt.sign(payload, Config.JWT_SECRET, { expiresIn: 3600 });
+  const refresh = jwt.sign(payload, Config.JWT_SECRET, { expiresIn: 86400 });
 
   const AuthenticationResult = {
     AccessToken: token,

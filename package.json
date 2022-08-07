@@ -2,7 +2,7 @@
   "name": "emj-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index",
+  "main": "index.js",
   "scripts": {
     "start": "ts-node src/app.ts",
     "dev": "ts-node-dev --respawn --transpile-only src/app.ts",

@@ -1,11 +1,10 @@
 import 'dotenv/config';
-import cors from 'cors';
 import express from 'express';
 import routes from './routes';
 import connect from './utils/connect';
 import logger from './utils/logger';
 
-// const cors = require('cors');
+const cors = require('cors');
 
 const corsOptions = {
   credentials: true,

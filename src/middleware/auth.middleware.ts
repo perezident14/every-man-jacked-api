@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-// import jwt from 'jsonwebtoken';
-import * as config from '../config';
+import Config from '../config';
 import logger from '../utils/logger';
 
 const jwt = require('jsonwebtoken');
@@ -13,7 +12,7 @@ export async function authenticateToken(req: Request, res: Response, next: NextF
     return res.sendStatus(401);
   }
 
-  jwt.verify(token, config.JWT_SECRET, (error: any, user: any) => {
+  jwt.verify(token, Config.JWT_SECRET, (error: any, user: any) => {
     if (error) {
       logger.error(error);
       return res.status(403);

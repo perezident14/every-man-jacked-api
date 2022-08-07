@@ -1,6 +1,5 @@
 import { Express, Request, Response } from 'express';
-// import jwt from 'jsonwebtoken';
-import * as config from '../config';
+import Config from '../config';
 import { UserRole } from '../models/user.model';
 import { createUser, loginUser, readUser } from '../services/user.service';
 import { errorParser } from '../utils/error.parser';
@@ -47,14 +46,14 @@ function authLoader(app: Express) {
       return res.status(401).send('Invalid Refresh Token');
     }
 
-    jwt.verify(data.refreshToken, config.JWT_SECRET, async (error: any, user: any) => {
+    jwt.verify(data.refreshToken, Config.JWT_SECRET, async (error: any, user: any) => {
       if (error) {
         return res.status(403).send('Expired Refresh Token');
       }
 
       const payload = await readUser(user._id);
-      const token = jwt.sign(payload, config.JWT_SECRET, { expiresIn: 3600 });
-      const refresh = jwt.sign(payload, config.JWT_SECRET, { expiresIn: 86400 });
+      const token = jwt.sign(payload, Config.JWT_SECRET, { expiresIn: 3600 });
+      const refresh = jwt.sign(payload, Config.JWT_SECRET, { expiresIn: 86400 });
     
       const AuthenticationResult = {
         AccessToken: token,

@@ -2,11 +2,18 @@ import { config } from 'dotenv';
 
 config();
 
-export const {
+const {
+  PORT,
+  DB_URI,
+  JWT_SECRET,
+  SALT_ROUNDS
+} = process.env as { [key: string]: string };
+
+const Config = {
   PORT,
   DB_URI,
   JWT_SECRET,
   SALT_ROUNDS,
-} = process.env as {
-  [key: string]: string;
-};
+}
+
+export default Config;
