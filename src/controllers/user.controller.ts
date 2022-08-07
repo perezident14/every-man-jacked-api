@@ -1,5 +1,5 @@
 import { Express, Request, Response } from 'express';
-import { createUser, deleteUser, listUsers, readUser, updateUser } from '../services/user.service';
+import { createUser, deleteUser, listUsers, readUser, updateUser, updateUserPassword } from '../services/user.service';
 import { errorParser } from '../utils/error.parser';
 import logger from '../utils/logger';
 
@@ -51,6 +51,18 @@ function UserController(app: Express) {
   app.delete('/:id', async (req: Request, res: Response) => {
     try {
       const data = await deleteUser(req.params.id);
+      return res.send(data);
+    } catch (error: any) {
+      logger.error(error);
+      const parsed = errorParser(error);
+      return res.status(parsed.status).send(parsed.message);
+    }
+  });
+
+  app.put('/:id/update-password', async (req: Request, res: Response) => {
+    try {
+      const { oldPassword, newPassword } = req.body;
+      const data = await updateUserPassword(req.params.id, oldPassword, newPassword);
       return res.send(data);
     } catch (error: any) {
       logger.error(error);

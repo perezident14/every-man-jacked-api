@@ -63,6 +63,22 @@ export async function deleteUser(id: string) {
   }
 };
 
+export async function updateUserPassword(id: string, oldPassword: string, newPassword: string) {
+  try {
+    const isValidPassword = await comparePassword(id, oldPassword);
+    if (!isValidPassword) {
+      throw new Error('Old Password Invalid');
+    }
+    const user = await UserModel.findByIdAndUpdate(id, { password: newPassword });
+    if (!user) {
+      throw new Error('User Not Found');
+    }
+    return user.toJSON();
+  } catch (error: any) {
+    throw new Error(error);
+  }
+};
+
 export async function hashPassword(password: string) {
   const salt = await bcrypt.genSalt(parseInt(Config.SALT_ROUNDS));
   const hash = await bcrypt.hash(password, salt);
