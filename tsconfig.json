@@ -7,10 +7,14 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipDefaultLibCheck": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "typeRoots": [
+      "../../typings",
+      "../../node_modules/@types"
+    ]
   },
   "exclude": [
-    "./node_modules",
-    "./typings"
+    "../../node_modules",
+    "../../typings"
   ]
 }
