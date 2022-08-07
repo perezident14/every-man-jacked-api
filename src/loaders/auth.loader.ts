@@ -1,10 +1,12 @@
 import { Express, Request, Response } from 'express';
-import jwt from 'jsonwebtoken';
+// import jwt from 'jsonwebtoken';
 import * as config from '../config';
 import { UserRole } from '../models/user.model';
 import { createUser, loginUser, readUser } from '../services/user.service';
 import { errorParser } from '../utils/error.parser';
 import logger from '../utils/logger';
+
+const jwt = require('jsonwebtoken');
 
 function authLoader(app: Express) {
   app.post('/admin/login', async (req: Request, res: Response) => {
