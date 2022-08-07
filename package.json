@@ -19,8 +19,7 @@
   },
   "typings": "dist/*.d.ts",
   "typeRoots": [
-    "./node_modules/@types",
-    "./types"
+    "./node_modules/@types"
   ],
   "homepage": "https://github.com/p14/every-man-jacked-api#readme",
   "dependencies": {
