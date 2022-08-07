@@ -1,3 +1,7 @@
+declare module 'bcrypt';
+declare module 'cors';
+declare module 'jsonwebtoken';
+
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
@@ -8,9 +12,5 @@ declare global {
     }
   }
 }
-
-declare module 'cors';
-declare module 'bcrypt';
-declare module 'jsonwebtoken';
 
 export { }
