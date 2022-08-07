@@ -1,7 +1,10 @@
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+// import bcrypt from 'bcrypt';
+// import jwt from 'jsonwebtoken';
 import * as config from '../config';
 import UserModel, { User } from '../models/user.model';
+
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 export async function listUsers() {
   try {
