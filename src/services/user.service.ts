@@ -69,11 +69,7 @@ export async function updateUserPassword(id: string, oldPassword: string, newPas
     if (!isValidPassword) {
       throw new Error('Old Password Invalid');
     }
-    const user = await UserModel.findByIdAndUpdate(id, { password: newPassword });
-    if (!user) {
-      throw new Error('User Not Found');
-    }
-    return user.toJSON();
+    return updateUser(id, { password: newPassword } as User);
   } catch (error: any) {
     throw new Error(error);
   }
