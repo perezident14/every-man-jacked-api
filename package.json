@@ -18,6 +18,10 @@
     "url": "https://github.com/p14/every-man-jacked-api/issues"
   },
   "typings": "dist/*.d.ts",
+  "typeRoots": [
+    "./node_modules/@types",
+    "./types"
+  ],
   "homepage": "https://github.com/p14/every-man-jacked-api#readme",
   "dependencies": {
     "@types/express-session": "^1.17.5",
