@@ -1,10 +1,10 @@
-import 'dotenv/config';
 import mongoose from 'mongoose';
+import * as config from '../config'
 import logger from './logger';
 
 async function connect() {
   try {
-    await mongoose.connect(process.env.DB_URI);
+    await mongoose.connect(config.DB_URI);
     logger.info('Connected to DB');
   } catch {
     logger.error('Could not connect to DB');
