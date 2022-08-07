@@ -2,15 +2,15 @@
   "compilerOptions": {
     "target": "es2016",
     // "lib": [],
-    "types": ["node"],
     "module": "commonjs",
     "outDir": "build",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipDefaultLibCheck": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "types": [
+      "cors"
+    ]
   },
-  "include": ["src/app.ts", "src/*.d.ts"],
-  "exclude": ["node_modules"]
 }
