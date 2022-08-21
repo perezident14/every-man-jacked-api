@@ -1,3 +1,6 @@
+# ARCHIVED
+Check out the current state of this app [here](https://github.com/p14/every-man-jacked-api).
+
 # Every Man Jacked (API)
 
 Every Man Jacked is a workout tool that helps users structure their own workouts with specific goals for strength in mind. This API handles the data flow for CRUD functionality surrounding exercises, workouts, users, and authentication.
